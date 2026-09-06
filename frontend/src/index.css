@@ -1,0 +1,156 @@
+:root {
+  --bg: #faf9f6;
+  --panel: #ffffff;
+  --ink: #1f2421;
+  --muted: #6b746c;
+  --line: #e3e0d8;
+  --accent: #2f6f5e;
+  --accent-ink: #ffffff;
+  --status-requested: #8a8f87;
+  --status-assigned: #2f6f5e;
+  --status-no_driver_found: #b0503b;
+}
+
+* { box-sizing: border-box; }
+
+body {
+  margin: 0;
+  background: var(--bg);
+  color: var(--ink);
+  font-family: -apple-system, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+}
+
+.mono {
+  font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
+  font-size: 0.85em;
+}
+
+.app-shell {
+  max-width: 980px;
+  margin: 0 auto;
+  padding: 48px 24px 80px;
+}
+
+header h1 {
+  font-size: 1.75rem;
+  margin: 0 0 4px;
+  letter-spacing: -0.01em;
+}
+
+.subtitle {
+  color: var(--muted);
+  margin: 0 0 32px;
+}
+
+.layout {
+  display: grid;
+  grid-template-columns: 280px 1fr;
+  gap: 32px;
+  align-items: start;
+}
+
+@media (max-width: 720px) {
+  .layout { grid-template-columns: 1fr; }
+}
+
+.ride-form {
+  background: var(--panel);
+  border: 1px solid var(--line);
+  border-radius: 10px;
+  padding: 20px;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.ride-form h2 {
+  font-size: 1rem;
+  margin: 0 0 4px;
+}
+
+.ride-form label {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  font-size: 0.85rem;
+  color: var(--muted);
+}
+
+.ride-form input {
+  font-size: 0.95rem;
+  padding: 8px 10px;
+  border: 1px solid var(--line);
+  border-radius: 6px;
+  color: var(--ink);
+  background: var(--bg);
+}
+
+.ride-form input:focus {
+  outline: 2px solid var(--accent);
+  outline-offset: 1px;
+}
+
+.ride-form button {
+  margin-top: 4px;
+  background: var(--accent);
+  color: var(--accent-ink);
+  border: none;
+  border-radius: 6px;
+  padding: 10px 14px;
+  font-size: 0.95rem;
+  cursor: pointer;
+}
+
+.ride-form button:disabled {
+  opacity: 0.6;
+  cursor: default;
+}
+
+.error-text {
+  color: var(--status-no_driver_found);
+  font-size: 0.85rem;
+  margin: 0;
+}
+
+.empty-state {
+  color: var(--muted);
+}
+
+.ride-table {
+  width: 100%;
+  border-collapse: collapse;
+  background: var(--panel);
+  border: 1px solid var(--line);
+  border-radius: 10px;
+  overflow: hidden;
+}
+
+.ride-table th,
+.ride-table td {
+  text-align: left;
+  padding: 10px 14px;
+  border-bottom: 1px solid var(--line);
+  font-size: 0.9rem;
+}
+
+.ride-table th {
+  color: var(--muted);
+  font-weight: 500;
+  font-size: 0.8rem;
+}
+
+.ride-table tr:last-child td {
+  border-bottom: none;
+}
+
+.status-badge {
+  display: inline-block;
+  padding: 3px 9px;
+  border-radius: 999px;
+  font-size: 0.78rem;
+  color: white;
+}
+
+.status-requested { background: var(--status-requested); }
+.status-assigned { background: var(--status-assigned); }
+.status-no_driver_found { background: var(--status-no_driver_found); }

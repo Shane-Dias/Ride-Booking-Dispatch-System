@@ -1,0 +1,20 @@
+{
+  "name": "ride-dispatch-backend",
+  "version": "1.0.0",
+  "description": "Simplified ride booking + dispatch backend",
+  "type": "module",
+  "main": "src/server.js",
+  "scripts": {
+    "start": "node src/server.js",
+    "dev": "node --watch src/server.js",
+    "consumer:billing": "node consumers/billing.consumer.js",
+    "consumer:ops": "node consumers/ops.consumer.js",
+    "loadtest": "node scripts/loadTest.js"
+  },
+  "dependencies": {
+    "express": "^4.19.2",
+    "cors": "^2.8.5",
+    "nanoid": "^5.0.7",
+    "ws": "^8.17.0"
+  }
+}
