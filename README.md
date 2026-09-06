@@ -8,24 +8,47 @@ A backend ride-booking system that demonstrates **asynchronous job dispatch**, *
 
 ## 📌 Table of Contents
 
-- [Features](#-features)
-- [Project Architecture](#-project-architecture)
-- [How the Backend Works](#-how-the-backend-works)
-  - [Ride Lifecycle](#ride-lifecycle)
-  - [Dispatch Pipeline](#dispatch-pipeline)
-  - [Event Bus (WebSocket Pub/Sub)](#event-bus-websocket-pubsub)
-  - [Why No Database?](#why-no-database)
-- [Project Structure](#-project-structure)
-- [Backend File Reference](#-backend-file-reference)
-- [Frontend Overview](#-frontend-overview)
-- [Getting Started](#-getting-started)
-  - [Prerequisites](#prerequisites)
-  - [Running the Backend](#running-the-backend)
-  - [Running the Frontend](#running-the-frontend)
-  - [Running the Event Consumers](#running-the-event-consumers)
-  - [Running the Load Test](#running-the-load-test)
-- [API Reference](#-api-reference)
-- [Design Decisions & Trade-offs](#-design-decisions--trade-offs)
+- [🚖 Ride Booking \& Dispatch System](#-ride-booking--dispatch-system)
+  - [📌 Table of Contents](#-table-of-contents)
+  - [✨ Features](#-features)
+  - [🏗 Project Architecture](#-project-architecture)
+  - [📸 Screenshots \& Demo Outputs](#-screenshots--demo-outputs)
+    - [1. 🖥️ Frontend Live Booking Dashboard](#1-️-frontend-live-booking-dashboard)
+    - [2. ⚡ 100-Ride Concurrent Load Test Output](#2--100-ride-concurrent-load-test-output)
+    - [3. 📡 Event Consumers in Action (Billing \& Ops)](#3--event-consumers-in-action-billing--ops)
+  - [⚙️ How the Backend Works](#️-how-the-backend-works)
+    - [Ride Lifecycle](#ride-lifecycle)
+    - [Dispatch Pipeline](#dispatch-pipeline)
+    - [Event Bus (WebSocket Pub/Sub)](#event-bus-websocket-pubsub)
+    - [Why No Database?](#why-no-database)
+  - [📁 Project Structure](#-project-structure)
+  - [🗂 Backend File Reference](#-backend-file-reference)
+    - [`src/server.js`](#srcserverjs)
+    - [`src/app.js`](#srcappjs)
+    - [`src/config/index.js`](#srcconfigindexjs)
+    - [`src/controllers/ride.controller.js`](#srccontrollersridecontrollerjs)
+    - [`src/routes/ride.routes.js`](#srcroutesrideroutesjs)
+    - [`src/models/ride.model.js`](#srcmodelsridemodeljs)
+    - [`src/store/ride.store.js`](#srcstoreridestorejs)
+    - [`src/services/ride.service.js`](#srcservicesrideservicejs)
+    - [`src/services/dispatch.worker.js`](#srcservicesdispatchworkerjs)
+    - [`src/services/driver.simulator.js`](#srcservicesdriversimulatorjs)
+    - [`src/events/event.bus.js`](#srceventseventbusjs)
+    - [`src/queue/queue.js`](#srcqueuequeuejs)
+    - [`src/utils/logger.js`](#srcutilsloggerjs)
+    - [`consumers/billing.consumer.js`](#consumersbillingconsumerjs)
+    - [`consumers/ops.consumer.js`](#consumersopsconsumerjs)
+    - [`scripts/loadTest.js`](#scriptsloadtestjs)
+  - [🖥 Frontend Overview](#-frontend-overview)
+  - [🚀 Getting Started](#-getting-started)
+    - [Prerequisites](#prerequisites)
+    - [Running the Backend](#running-the-backend)
+    - [Running the Frontend](#running-the-frontend)
+    - [Running the Event Consumers](#running-the-event-consumers)
+    - [Running the Load Test](#running-the-load-test)
+  - [📡 API Reference](#-api-reference)
+  - [🧠 Design Decisions \& Trade-offs](#-design-decisions--trade-offs)
+  - [📄 License](#-license)
 
 ---
 
@@ -109,6 +132,33 @@ A backend ride-booking system that demonstrates **asynchronous job dispatch**, *
   │ ASSIGNED status  │   │ status transition  │
   └──────────────────┘   └────────────────────┘
 ```
+
+---
+
+## 📸 Screenshots & Demo Outputs
+
+> *Add your screenshots to a `screenshots/` directory at the project root with the matching filenames below.*
+
+### 1. 🖥️ Frontend Live Booking Dashboard
+Real-time dashboard displaying ride booking form and live-updating status table.
+
+![Frontend Live Dashboard](./screenshots/frontend-dashboard.png)
+
+---
+
+### 2. ⚡ 100-Ride Concurrent Load Test Output
+Verification suite executing 100 concurrent ride dispatches and displaying validation results table.
+
+![Load Test Output](./screenshots/loadtest-output.png)
+
+---
+
+### 3. 📡 Event Consumers in Action (Billing & Ops)
+Independent terminal processes receiving real-time fan-out events over WebSockets (`ws://localhost:4000/events`).
+
+| Billing Consumer (`npm run consumer:billing`) | Ops Consumer (`npm run consumer:ops`) |
+| :---: | :---: |
+| ![Billing Consumer Output](./screenshots/consumer-billing.png) | ![Ops Consumer Output](./screenshots/consumer-ops.png) |
 
 ---
 
